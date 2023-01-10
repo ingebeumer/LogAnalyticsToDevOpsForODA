@@ -1,24 +1,24 @@
 # Tutorial: Azure DevOps for On-Demand Assessment remediation
+
+**Applies to:** :white_check_mark:ADAssessmentRecommendation :white_check_mark:ADSecurityAssessmentRecommendation :white_check_mark:SQLAssessmentRecommendation
+
+**Subject to validation:** :small_orange_diamond:AzureAssessmentRecommendation :small_orange_diamond:ExchangeAssessmentRecommendation :small_orange_diamond:SCCMAssessmentRecommendation :small_orange_diamond:SCOMAssessmentRecommendation :small_orange_diamond:SfBAssessmentRecommendation :small_orange_diamond:SfBOnlineAssessmentRecommendation :small_orange_diamond:SharePointOnlineAssessmentRecommendation :small_orange_diamond:SPAssessmentRecommendation        
+
 In this tutorial, you export Focus Area and findings and recommendations from Log Analytics workspace for On-Demand Assessment and import them as Epics and Product backlog items in Azure DevOps.
+
+![Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.](https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png)
+
+As an Administrator, I want to have the findings and recommendation of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
+
+The tutorial intentionally does not go further into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards in Azure DevOps. The focus is on doing more with less, on gaining automation savings and keep developers and administrators focused on high-impact and not administrative work. To empower every developer and every organization to achieve more with their data. 
+
+![Screenshot saying Doing more... with less... to empower every developer and every organization to achieve more with their Data.](https://user-images.githubusercontent.com/40343254/211434877-594ee4b6-1283-4b59-bce0-16fdb99765dd.png)
 
 You will learn how to:
 
-:white_check_mark: Query Log Analytics workspace with relevant queries in Kusto Query Language.
+:white_check_mark:Query Log Analytics workspace with relevant queries in Kusto Query Language.
 
-:white_check_mark: Bulk import items in Azure DevOps.
-
-## Introduction
-![Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.](https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png)
- 
-As an Administrator, I want the findings and recommendation of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in our organization.
- 
-![Screenshot saying Doing more... with less... to empower every developer and every organization to achieve more with their Data.](https://user-images.githubusercontent.com/40343254/211434877-594ee4b6-1283-4b59-bce0-16fdb99765dd.png)
-
-> EMPOWER EVERY DEVELOPER AND EVERY ORGANIZATION TO ACHIEVE MORE WITH THEIR DATA.
-
-> **Note**
-> 
-> This guidance intentionally does not extensively go into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards of Azure DevOps. The guidance focuses on doing more with less, on gaining automation savings and keep developers and administrators focused on high-impact and not administrative work.
+:white_check_mark:Bulk import items in Azure DevOps.
 
 ## What, why, and how
 **What**: Easier tracking of remediation progress of On-Demand Assessment conform the Agile working method in your organization.
@@ -99,27 +99,6 @@ This example results to SQLAssessmentRecommendation.
 ![Screenshot of KQL query with a 24 hours time range showing 1 result.](https://user-images.githubusercontent.com/40343254/211517173-16d3f0c0-36a6-4ad3-a1d8-3bf1a0eb9222.png)
 ![Screenshot of KQL query with a 7 days time range showing 3 results.](https://user-images.githubusercontent.com/40343254/211517206-980548ad-c707-4680-ba0e-88f3c8050ba6.png)
  
-> **Note**
-> 
-> Rows are highlighted in the table below where the guidance is confirmed. The table is matching On-Demand Assessment Prerequisite Documents with Log Analytics workspace supported tables containing ‘Assessment’.
->
-> | **Assessment name** | **Assessment technical name** | 
-> |:--------|:---------|
-> | **Active Directory** | **ADAssessmentRecommendation** | 
-> | **Active Directory Security** | **ADSecurityAssessmentRecommendation** | 
-> | Microsoft Azure | AzureAssessmentRecommendation | 
-> | Exchange Server | ExchangeAssessmentRecommendation | 
-> | System Center Configuration Manager | 	SCCMAssessmentRecommendation | 
-> | System Center Operations Manager | SCOMAssessmentRecommendation | 
-> | Skype for Business | SfBAssessmentRecommendation | 
-> | Office 365 Skype and Teams  | SfBOnlineAssessmentRecommendation | 
-> | Office 365 SharePoint Online | SharePointOnlineAssessmentRecommendation | 
-> | SharePoint Server | SPAssessmentRecommendation | 
-> | **SQL Server** | **SQLAssessmentRecommendation** | 
-> | Windows Server (Server, Server Security, Hyper-V, Failover Cluster, IIS) | 
-> | Windows Client |  | 
-> | Office 365 Exchange Online |  | 
-
 ### 1.2 - Export Focus Area
 Start by exporting the Focus Areas.
 1. Copy below KQL query to Log Analytics workspace > Logs. 
