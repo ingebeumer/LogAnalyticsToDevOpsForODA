@@ -6,8 +6,14 @@
 
 In this tutorial, you will export and transform Focus Area as well as findings and recommendations from Log Analytics workspace for On-Demand Assessment and import them as Epics and Product backlog items in Azure DevOps.
 
+<!-- ?????
+How to escape < and > in img alt text?
+Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.
+Above worked in earlier code, but then how to resize the image?
 ![Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.](https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png)
-
+--->
+<img alt="Screenshot with basic agile user story: As a **type of user**, I want **some goal** so that **some reason**." src="https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png" width="500" />
+ 
 As an Administrator, I want to have the findings and recommendations of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
 
 The result of this tutorial allows for easier tracking of remediation progress of On-Demand Assessment conform the Agile working method in your organization. Tracking progress on what the team is working on then on also conforms to your Agile working method.
