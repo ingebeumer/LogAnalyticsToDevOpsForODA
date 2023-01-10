@@ -82,21 +82,22 @@ search *
 Note
 Rows are highlighted in the table below where the guidance is confirmed. The table is matching On-Demand Assessment Prerequisite Documents with Log Analytics workspace supported tables containing ‘Assessment’.
 
-**Assessment name | Assessment technical name**
-**Active Directory | ADAssessmentRecommendation**
-**Active Directory Security | ADSecurityAssessmentRecommendation**
-Microsoft Azure | AzureAssessmentRecommendation
-Exchange Server | ExchangeAssessmentRecommendation
-System Center Configuration Manager | 	SCCMAssessmentRecommendation
-System Center Operations Manager | SCOMAssessmentRecommendation
-Skype for Business | SfBAssessmentRecommendation        
-Office 365 Skype and Teams  | SfBOnlineAssessmentRecommendation        
-Office 365 SharePoint Online | SharePointOnlineAssessmentRecommendation
-SharePoint Server | SPAssessmentRecommendation        
-**SQL Server | SQLAssessmentRecommendation**
-Windows Server (Server, Server Security, Hyper-V, Failover Cluster, IIS) | 
-Windows Client | 	
-Office 365 Exchange Online | 	
+| **Assessment name** | **Assessment technical name** | 
+|--------|---------|
+| **Active Directory** | **ADAssessmentRecommendation** | 
+| **Active Directory Security** | **ADSecurityAssessmentRecommendation** | 
+| Microsoft Azure | AzureAssessmentRecommendation | 
+| Exchange Server | ExchangeAssessmentRecommendation | 
+| System Center Configuration Manager | 	SCCMAssessmentRecommendation | 
+| System Center Operations Manager | SCOMAssessmentRecommendation | 
+| Skype for Business | SfBAssessmentRecommendation | 
+| Office 365 Skype and Teams  | SfBOnlineAssessmentRecommendation | 
+| Office 365 SharePoint Online | SharePointOnlineAssessmentRecommendation | 
+| SharePoint Server | SPAssessmentRecommendation | 
+| **SQL Server** | **SQLAssessmentRecommendation** | 
+| Windows Server (Server, Server Security, Hyper-V, Failover Cluster, IIS) | 
+| Windows Client |  | 
+| Office 365 Exchange Online |  | 
 
 ### Export Focus Area
 Start by exporting the Focus Areas.
