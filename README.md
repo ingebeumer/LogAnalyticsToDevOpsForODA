@@ -16,7 +16,7 @@ Above worked in earlier code, but then how to resize the image?
  
 As an Administrator, I want to have the findings and recommendations of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
 
-The result of this tutorial allows for easier tracking of remediation progress of On-Demand Assessment conform the Agile working method in your organization. Tracking progress on what the team is working on then on also conforms to your Agile working method.
+The result of this tutorial allows for easier tracking of remediation progress of On-Demand Assessment conform the Agile methodology in your organization. Tracking progress on what a team is working on then on also conforms to your Agile working method.
 
 The tutorial does not go further into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards in Azure DevOps. The focus is on doing more with less, on gaining automation savings and keeping developers and administrators focused on high-impact and not administrative work. To empower every developer and every organization to achieve more with their data. 
 
