@@ -2,33 +2,25 @@
 
 **Applies to:** :white_check_mark:ADAssessmentRecommendation :white_check_mark:ADSecurityAssessmentRecommendation :white_check_mark:SQLAssessmentRecommendation
 
-**Subject to validation:** :small_orange_diamond:AzureAssessmentRecommendation :small_orange_diamond:ExchangeAssessmentRecommendation :small_orange_diamond:SCCMAssessmentRecommendation :small_orange_diamond:SCOMAssessmentRecommendation :small_orange_diamond:SfBAssessmentRecommendation :small_orange_diamond:SfBOnlineAssessmentRecommendation :small_orange_diamond:SharePointOnlineAssessmentRecommendation :small_orange_diamond:SPAssessmentRecommendation        
+**Subject to validation:** :small_orange_diamond:AzureAssessmentRecommendation :small_orange_diamond:ExchangeAssessmentRecommendation :small_orange_diamond:SCCMAssessmentRecommendation :small_orange_diamond:SCOMAssessmentRecommendation :small_orange_diamond:SfBAssessmentRecommendation :small_orange_diamond:SfBOnlineAssessmentRecommendation :small_orange_diamond:SharePointOnlineAssessmentRecommendation :small_orange_diamond:SPAssessmentRecommendation 
 
-In this tutorial, you export Focus Area and findings and recommendations from Log Analytics workspace for On-Demand Assessment and import them as Epics and Product backlog items in Azure DevOps.
+In this tutorial, you will export and transform Focus Area as well as findings and recommendations from Log Analytics workspace for On-Demand Assessment and import them as Epics and Product backlog items in Azure DevOps.
 
 ![Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.](https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png)
 
-As an Administrator, I want to have the findings and recommendation of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
+As an Administrator, I want to have the findings and recommendations of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
 
-The tutorial intentionally does not go further into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards in Azure DevOps. The focus is on doing more with less, on gaining automation savings and keep developers and administrators focused on high-impact and not administrative work. To empower every developer and every organization to achieve more with their data. 
+The result of this tutorial allows for easier tracking of remediation progress of On-Demand Assessment conform the Agile working method in your organization. Tracking progress on what the team is working on then on also conforms to your Agile working method.
 
-<img alt = "Screenshot saying Doing more... with less... to empower every developer and every organization to achieve more with their Data." src="https://user-images.githubusercontent.com/40343254/211434877-594ee4b6-1283-4b59-bce0-16fdb99765dd.png" width="250" />
+The tutorial does not go further into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards in Azure DevOps. The focus is on doing more with less, on gaining automation savings and keeping developers and administrators focused on high-impact and not administrative work. To empower every developer and every organization to achieve more with their data. 
 
 You will learn how to:
 
-:white_check_mark:Query Log Analytics workspace with relevant queries in Kusto Query Language.
+:white_check_mark:Export Focus Area and findings and recommendations from Log Analytics workspace for On-Demand Assessment.
 
-:white_check_mark:Bulk import items in Azure DevOps.
+:white_check_mark:Use relevant queries in Kusto Query Language to perform export and transformation.
 
-## What, why, and how
-**What**: Easier tracking of remediation progress of On-Demand Assessment conform the Agile working method in your organization.
-
-**Why**: Track progress on what the team is working on.
-
-**How**: This document gives guidance like in a QuickStart in Microsoft Learn to:
-
-- Export the Focus Area and findings and recommendations from the Log Analytics workspace from your On-Demand Assessment and transform them to look like Epics and Product Backlog Items used in Azure DevOps.
-- Bulk import the Epics and Product backlog items in Azure DevOps. 
+:white_check_mark:Bulk import Epics and Product backlog items in Azure DevOps.
 
 ## Prerequisites
 Prerequisites to complete this tutorial.
@@ -38,30 +30,29 @@ Prerequisites to complete this tutorial.
 If there is no organization available to you now you can start with a free organization for [Azure DevOps Services](https://azure.microsoft.com/en-us/products/devops/). Going through the steps in [Sign up for Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/user-guide/sign-up-invite-teammates?toc=%2Fazure%2Fdevops%2Fget-started%2Ftoc.json&view=azure-devops) there is a Basic license where the first five users are free.
 - [Microsoft Office 2016](https://www.microsoft.com/en-us/microsoft-365/get-started-with-office-2021) or higher (optional)
 - Discuss with your Azure DevOps project owner so they are aware of this import. Work carefully because your Azure DevOps project may have content already.
-- Log Analytics workspace permissions to export data. `ToDo --> Validate permissions with principle of least privilege. Log Analytics Reader role.`
-- Azure DevOps permissions for creating items needed through import. `ToDo --> Validate permissions with principle of least privilege.`
+- Log Analytics Reader role on Log Analytics workspace to export data.
+- Azure DevOps permissions for importing Work Items. `ToDo --> Validate permissions with principle of least privilege.`
  
 ### Azure DevOps project
 If you do not have an existing Azure DevOps project in your organization, you can create one. [Create a project in Azure DevOps](https://learn.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops&tabs=browser) and [Choose a process for your Azure DevOps project](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/choose-process?view=azure-devops&tabs=agile-process#choose-a-basic-agile-scrum-and-cmmi-process) that suits your needs.
  
 ### Azure DevOps project process
 Depending on which process was chosen on creation of your Azure DevOps project [Work Item Type](https://learn.microsoft.com/en-us/azure/devops/boards/boards/kanban-quickstart?view=azure-devops#add-a-kanban-board) for backlog levels is different.  
-[Agile](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/agile-process?view=azure-devops) : User Story, Feature, and Epic
+- [Agile](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/agile-process?view=azure-devops) : User Story, Feature, and Epic
+- [Basic](https://learn.microsoft.com/en-us/azure/devops/boards/get-started/plan-track-work?view=azure-devops) : Issue and Epic
+- [Scrum](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process?view=azure-devops) : Product Backlog Item, Feature, and Epic
+- [CMMI](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/cmmi-process?view=azure-devops) : Requirement, Feature, and Epic
 
-[Basic](https://learn.microsoft.com/en-us/azure/devops/boards/get-started/plan-track-work?view=azure-devops) : Issue and Epic
-
-[Scrum](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process?view=azure-devops) : Product Backlog Item, Feature, and Epic
-
-[CMMI](https://learn.microsoft.com/en-us/azure/devops/boards/work-items/guidance/cmmi-process?view=azure-devops) : Requirement, Feature, and Epic
-- Go to your [Azure DevOps project](https://dev.azure.com/) and confirm the Process in Project details. If the process is other than Scrum, you need to change the query parameter for Work Item Type later in the KQL query (Kusto Query Language).
-
-> Examples throughout this document are from an Azure DevOps Scrum project and an On-Demand Assessment for SQL.
+> **Note**
+> 
+> Examples throughout this document are from an Azure DevOps Scrum project (and an On-Demand Assessment for SQL).
+> Go to your [Azure DevOps project](https://dev.azure.com/) and confirm the Process in Project details. If the process is other than Scrum, you need to change the query parameter for Work Item Type later in the KQL query (Kusto Query Language).
 > 
 > ![Screenshot showing project Process type in Project details.](https://user-images.githubusercontent.com/40343254/211513340-b1529c40-6fcb-4601-8f5c-74af66b427c9.png)
 
 > **Note**
 > 
-> There may be possibilities for similar bulk imports, for example into Jira. The process was only tested on Azure DevOps. Adjust the export from Log Analytics workspace to match the import expected by Jira or other tools supporting Agile methodologies.
+> This tutorial is using Azure DevOps. However, there may be possibilities for similar bulk imports, for example into Jira. Adjust the export from Log Analytics workspace to match the import expected by Jira or other tools supporting Agile methodologies.
 > 
 > [How to bulk import Components into JIRA Issues | Jira | Atlassian Documentation](https://confluence.atlassian.com/jirakb/how-to-bulk-import-components-into-jira-720418562.html)
 >
@@ -71,8 +62,8 @@ Depending on which process was chosen on creation of your Azure DevOps project [
 ## 1 - Export from Log Analytics workspace
 We start by exporting On-Demand Assessment findings and recommendations from the Log Analytics workspace.
 
-1.	In the Azure portal go to the specific [Log Analytics workspace](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.OperationalInsights%2Fworkspaces) from which you want to export.
-1.	Go to **Logs** in the workspace.
+1.	In the Azure portal select the specific [Log Analytics workspace](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.OperationalInsights%2Fworkspaces) from which you want to export.
+1.	Select **Logs** in the workspace menu.
 
     ![Screenshot of partial menu in Log Analytics workspace to navigate to Logs.](https://user-images.githubusercontent.com/40343254/211514234-3eb0fa29-33ef-44be-95fc-de1bdb85ad5b.png)
 
@@ -81,7 +72,7 @@ We start by exporting On-Demand Assessment findings and recommendations from the
     ![Screenshot of closing the Queries window.](https://user-images.githubusercontent.com/40343254/211514249-a22c2050-becb-4e65-9532-2fa97ed777bc.png)
 
 ### 1.1 - Assessment Name
-On-Demand Assessment names differ per product. To export from the assessment you are interested in, we need the name. 
+On-Demand Assessment names differ per product. To export from the assessment you are interested in, you need the name. 
 1.	Copy the KQL query (Kusto Query Language) to Log Analytics workspace > Logs.
 	   ```kusto
     //Assessment
@@ -102,7 +93,7 @@ This example results to SQLAssessmentRecommendation.
 ### 1.2 - Export Focus Area
 Start by exporting the Focus Areas.
 1. Copy below KQL query to Log Analytics workspace > Logs. 
-1. Select <kbd>Ctrl</kbd>+<kbd>H</kbd> to search for `<MyAssessmentRecommendation>` and replace this with the result from Assessment Name.
+1. Select <kbd>Ctrl</kbd>+<kbd>H</kbd> to search for `<MyAssessmentRecommendation>` and replace this with the result from the Assessment Name query.
 1. Adjust query parameter **qpAssignTo** and replace `<MyFullName>` by your full name as shown in Azure DevOps. 
     ![Screenshot of KQL query and modifications needed before running the query.](https://user-images.githubusercontent.com/40343254/211526368-79e47bc9-ac49-468d-81e4-8efd5ff87013.png)
 1. Adjust the **Time range** if you are on the default schedule to run On-Demand Assessments weekly.
@@ -139,7 +130,7 @@ This example results from items found in the On-Demand Assessment for SQL.
 ### 1.3 - Export findings and recommendations
 Like the export of Focus Area, we export findings and recommendations.
 1. Copy below KQL query to Log Analytics workspace > Logs. 
-1. Use <kbd>Ctrl</kbd>+<kbd>H</kbd> to search for `<MyAssessmentRecommendation>` and replace this with the result from Assessment Name.
+1. Use <kbd>Ctrl</kbd>+<kbd>H</kbd> to search for `<MyAssessmentRecommendation>` and replace this with the result from the Assessment Name query.
 1. Adjust query parameter **qpAssignTo** and replace `<MyFullName>` by your full name as shown in Azure DevOps. 
 1. If needed adjust query parameter **qpWorkItemType** and replace **Product Backlog Item** by your Work Item Type as confirmed in Azure DevOps project process.
 1. Adjust the **Time range** if you are on the default schedule to run On-Demand Assessments weekly.
@@ -184,7 +175,7 @@ Like the export of Focus Area, we export findings and recommendations.
         )
     | sort by tmpFocusArea asc, ['Work Item Type'] asc 
     | project-away tmpFocusArea;
-    //Export | Export to CSV - displayed columns.
+    //**Export | Export to CSV - displayed columns**.
     //Rename _query_data.csv_ to _2_ProductBacklogItem.csv_
     ```
 1. Select **Run** the query to get the findings and recommendations that will transform to product backlog items.
@@ -210,26 +201,26 @@ Now the export is complete, we can import Azure DevOps Epics and Product Backlog
 
     ![Screenshot of choosing your csv file to import into Azure DevOps.](https://user-images.githubusercontent.com/40343254/211529308-1ad956f5-3c7c-4263-b63d-042ffc58a4dc.png)
 
-1. Review the imported items to see if there are no data issues highlighted that you need to resolve before you can Save items.
+1. Review the imported items to see if there are no data issues highlighted that you need to resolve before you can **Save items**.
 
     ![Screenshot of Azure DevOps Import Work Items to confirm there are no items highlighted before you can Save items.](https://user-images.githubusercontent.com/40343254/211529360-db545e6a-ad53-410a-af22-00fa5d29a2de.png)
 
 1.  Keep the screen open because you need the Epic IDs in a minute.
 
 ### 2.2 - Import Product Backlog Items
-1. If you don’t have the screen open with the Epics you just created, go to your [Azure DevOps](https://dev.azure.com/) project and Recently created in **Work items**.
+1. If you don’t have the screen open with the Epics you just created, go to your [Azure DevOps](https://dev.azure.com/) project and **Recently created** in **Work items**.
 
     ![Screenshot of how to Save items in Azure DevOps that were just imported.](https://user-images.githubusercontent.com/40343254/211529610-9b467733-5300-4617-8f15-e50da37b52d7.png)
 
 1. First, you need to prepare file _2_ProductBacklogItems.csv_ for import in Azure DevOps.
 1. Open file _2_ProductBacklogItems.csv_.
-1. For each row in file _2_ProductBacklogItems.csv_ where Work Item Type equals Epic, replace the placeholder text `EpicID` by the ID from the Azure DevOps Epics we just imported and paste it in the row with the same Epic title in 2_ProductBacklogItems.csv.
+1. For each row in file _2_ProductBacklogItems.csv_ where Work Item Type equals Epic, replace the placeholder text `<EpicID>` by the ID from the Azure DevOps Epics we just imported and paste it in the row with the same Epic title in _2_ProductBacklogItems.csv_.
 
     ![Screenshot of csv file in Excel with highlighted rows of Work Item Type equals Epic. Overlay of Azure DevOps imported and saved Epics with the ID column highlighted to copy the ID to the matching row in the csv file.](https://user-images.githubusercontent.com/40343254/211529781-07d067d5-42f0-4e6d-ba19-1ab002850239.png)
 
 1. Save and close file _2_ProductBacklogItems.csv_.
-1. Return to Import Work Items in the **Queries** menu item in the left in Azure DevOps.
-1. Choose **Import Work Items**.
+1. Return to **Import Work Items** in the **Queries** menu item in the left in Azure DevOps.
+1. Select **Import Work Items**.
 
     ![Screenshot of how to Import Work Items in Queries in Azure DevOps.](https://user-images.githubusercontent.com/40343254/211529900-3e2be81d-3179-4a6a-915a-b5f8f90feac1.png)
 
@@ -242,9 +233,13 @@ Now the export is complete, we can import Azure DevOps Epics and Product Backlog
 > 
 > ![Screenshot of Azure DevOps Import Work Items with items with errors that need to be resolved before the items can be saved.](https://user-images.githubusercontent.com/40343254/211530058-801e2183-5175-48d1-94f1-6004aed0d4b8.png)
 
-1. **Save Items** when all is ready for import.
+1. Select **Save Items** when all is ready for import.
 1. The import process has populated the backlog with all the findings and recommendations from your assessment. 
 
     ![Screenshot of Azure DevOps Backlog populated with Product Backlog Items from findings and recommendations from the On-Demand Assessment. Parent Epic relates to Focus Area from the assessment.](https://user-images.githubusercontent.com/40343254/211530143-6c1536ce-3550-4669-bdfc-ddef9b60bc51.png)
 
-Next you can work on your On-Demand Assessment remediation in Azure DevOps as you would with any other Work Item in your Agile working method.
+###Clean up resources
+When no longer needed, delete the csv files generated earlier.
+
+### Next Steps
+Next you can work on On-Demand Assessment remediation in Azure DevOps as you would with any other Work Item in your Agile working method.
