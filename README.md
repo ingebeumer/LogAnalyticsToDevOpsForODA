@@ -12,7 +12,7 @@ As an Administrator, I want to have the findings and recommendation of an On-Dem
 
 The tutorial intentionally does not go further into concepts of Scrum and Agile methodologies nor how to apply the Scrum Framework with Boards in Azure DevOps. The focus is on doing more with less, on gaining automation savings and keep developers and administrators focused on high-impact and not administrative work. To empower every developer and every organization to achieve more with their data. 
 
-![Screenshot saying Doing more... with less... to empower every developer and every organization to achieve more with their Data.](https://user-images.githubusercontent.com/40343254/211434877-594ee4b6-1283-4b59-bce0-16fdb99765dd.png)
+<img alt = "Screenshot saying Doing more... with less... to empower every developer and every organization to achieve more with their Data." src="https://user-images.githubusercontent.com/40343254/211434877-594ee4b6-1283-4b59-bce0-16fdb99765dd.png" width="250" />
 
 You will learn how to:
 
