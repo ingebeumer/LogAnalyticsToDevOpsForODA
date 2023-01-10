@@ -244,7 +244,7 @@ Now the export is complete, we can import Azure DevOps Epics and Product Backlog
 
     ![Screenshot of Azure DevOps Backlog populated with Product Backlog Items from findings and recommendations from the On-Demand Assessment. Parent Epic relates to Focus Area from the assessment.](https://user-images.githubusercontent.com/40343254/211530143-6c1536ce-3550-4669-bdfc-ddef9b60bc51.png)
 
-###Clean up resources
+### Clean up resources
 When no longer needed, delete the csv files generated earlier.
 
 ### Next Steps
