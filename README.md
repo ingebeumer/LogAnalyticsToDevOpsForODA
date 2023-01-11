@@ -109,7 +109,7 @@ Start by exporting the Focus Areas.
 	        qpAssignTo: string = "<MyFullName>" //your full name as shown in Azure DevOps
 	   );
 	   //
-	   <MyAssessmentRecommendation> //replace with result from Query Assessment Name
+	   <MyAssessmentRecommendation> //replace with result from query Assessment Name
 	   | where (RecommendationResult == "Failed")
 	   | summarize by AssessmentName, FocusArea
 	   | project 
@@ -147,7 +147,7 @@ Like the export of Focus Area, we export findings and recommendations.
         , qpWorkItemType: string = "Product Backlog Item" //Work Item Type as in your Azure DevOps project process.
     );
     //
-    <MyAssessmentRecommendation>
+    <MyAssessmentRecommendation> //replace with result from query Assessment Name
     | where (RecommendationResult == "Failed")
     | summarize by AssessmentName, FocusArea
     | project 
@@ -160,7 +160,7 @@ Like the export of Focus Area, we export findings and recommendations.
         , Priority = 2
         , tmpFocusArea = FocusArea
     | union (
-        <MyAssessmentRecommendation>
+        <MyAssessmentRecommendation> //replace with result from query Assessment Name
         | where (RecommendationResult == "Failed")
         | summarize by AssessmentName, FocusArea, Recommendation, Description, RecommendationScore
         | sort by FocusArea, Recommendation
