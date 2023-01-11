@@ -1,8 +1,8 @@
 # Tutorial: Azure DevOps for On-Demand Assessment remediation
 
-**Applies to:** :white_check_mark:ADAssessmentRecommendation :white_check_mark:ADSecurityAssessmentRecommendation :white_check_mark:SQLAssessmentRecommendation
+**Applies to:** :white_check_mark:ADAssessmentRecommendation :white_check_mark:ADSecurityAssessmentRecommendation :white_check_mark:SQLAssessmentRecommendation :white_check_mark:SCCMAssessmentRecommendation :white_check_mark:SCOMAssessmentRecommendation :white_check_mark:WindowsServerAssessmentRecommendation :white_check_mark:WindowsClientAssessmentRecommendation
 
-**Subject to validation:** :small_orange_diamond:AzureAssessmentRecommendation :small_orange_diamond:ExchangeAssessmentRecommendation :small_orange_diamond:SCCMAssessmentRecommendation :small_orange_diamond:SCOMAssessmentRecommendation :small_orange_diamond:SfBAssessmentRecommendation :small_orange_diamond:SfBOnlineAssessmentRecommendation :small_orange_diamond:SharePointOnlineAssessmentRecommendation :small_orange_diamond:SPAssessmentRecommendation 
+**Subject to validation:** :small_orange_diamond:AzureAssessmentRecommendation :small_orange_diamond:ExchangeAssessmentRecommendation :small_orange_diamond:SfBAssessmentRecommendation :small_orange_diamond:SfBOnlineAssessmentRecommendation :small_orange_diamond:SharePointOnlineAssessmentRecommendation :small_orange_diamond:SPAssessmentRecommendation 
 
 In this tutorial, you will export and transform Focus Area as well as findings and recommendations from Log Analytics workspace for On-Demand Assessment and import them as Epics and Product backlog items in Azure DevOps.
 
@@ -121,8 +121,8 @@ Start by exporting the Focus Areas.
 	        , Description = strcat('Epic imported from "On-Demand Assessment for ', AssessmentName, '" and Focus Area "', FocusArea
 	        , '" in Log Analytics workspace.')
 	        , Priority = 2;
-	   //**Export | Export to CSV - displayed columns**.
-	   //Rename _query_data.csv_ to _1_Epic.csv_
+	   //Export | Export to CSV - displayed columns.
+	   //Rename query_data.csv to 1_Epic.csv
     ```
 
 1. Select **Run** the query to get the Focus Area that will transform to Epics. 
@@ -149,7 +149,6 @@ Like the export of Focus Area, we export findings and recommendations.
     //
     <MyAssessmentRecommendation>
     | where (RecommendationResult == "Failed")
-    | where not (FocusArea has_any("InternalAssessmentQuality", "Prerequisite"))
     | summarize by AssessmentName, FocusArea
     | project 
         ID = '<EpicID>'
@@ -163,7 +162,6 @@ Like the export of Focus Area, we export findings and recommendations.
     | union (
         <MyAssessmentRecommendation>
         | where (RecommendationResult == "Failed")
-        | where not (FocusArea has_any("InternalAssessmentQuality", "Prerequisite"))
         | summarize by AssessmentName, FocusArea, Recommendation, Description, RecommendationScore
         | sort by FocusArea, Recommendation
         | project 
@@ -181,8 +179,8 @@ Like the export of Focus Area, we export findings and recommendations.
         )
     | sort by tmpFocusArea asc, ['Work Item Type'] asc 
     | project-away tmpFocusArea;
-    //**Export | Export to CSV - displayed columns**.
-    //Rename _query_data.csv_ to _2_ProductBacklogItem.csv_
+    //Export | Export to CSV - displayed columns.
+    //Rename query_data.csv to 2_ProductBacklogItem.csv
     ```
 1. Select **Run** the query to get the findings and recommendations that will transform to product backlog items.
 1. Export the results to csv through **Export | Export to CSV - displayed columns**.
@@ -244,8 +242,8 @@ Now the export is complete, we can import Azure DevOps Epics and Product Backlog
 
     ![Screenshot of Azure DevOps Backlog populated with Product Backlog Items from findings and recommendations from the On-Demand Assessment. Parent Epic relates to Focus Area from the assessment.](https://user-images.githubusercontent.com/40343254/211530143-6c1536ce-3550-4669-bdfc-ddef9b60bc51.png)
 
-### Clean up resources
+## Clean up resources
 When no longer needed, delete the csv files generated earlier.
 
-### Next Steps
+## Next Steps
 Next you can work on On-Demand Assessment remediation in Azure DevOps as you would with any other Work Item in your Agile working method.
