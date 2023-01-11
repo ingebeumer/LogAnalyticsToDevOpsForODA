@@ -12,7 +12,7 @@ Screenshot with basic agile user story: As a \<type of user\>, I want \<some goa
 Above worked in earlier code, but then how to resize the image?
 ![Screenshot with basic agile user story: As a \<type of user\>, I want \<some goal\> so that \<some reason\>.](https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png)
 --->
-<img alt="Screenshot with basic agile user story: As a **type of user**, I want **some goal** so that **some reason**." src="https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png" width="500" />
+<kbd><img alt="Screenshot with basic agile user story: As a **type of user**, I want **some goal** so that **some reason**." src="https://user-images.githubusercontent.com/40343254/211532236-1bda1e60-0961-4910-9b69-4cb190eb0867.png" width="500" /></kbd>
  
 As an Administrator, I want to have the findings and recommendations of an On-Demand Assessment in Azure DevOps Work Items so that I can work with On-Demand Assessment remediation as with any other Work Item in my organization.
 
