@@ -89,7 +89,6 @@ On-Demand Assessment names differ per product. To export from the assessment you
     search *
     | where $table contains "Assessment"
     | summarize by $table
-    | project $table
     ```
     
 1.	Select **Run** to get the assessment name. 
